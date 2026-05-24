@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Etudiant;
+use App\Models\Professeur;
 use Database\Factories\UserFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -36,11 +38,11 @@ class User extends Authenticatable
 
     public function etudiant()
     {
-        return $this->hasOne(\App\Models\Etudiant::class);
+        return $this->hasOne(Etudiant::class);
     }
 
     public function professeur()
     {
-        return $this->hasOne(\App\Models\Professeur::class);
+        return $this->hasOne(Professeur::class);
     }
 }

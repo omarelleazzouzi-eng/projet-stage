@@ -32,6 +32,7 @@ export default function Layout({ children }) {
     if (isEtudiant) {
       return [
         { path: '/etudiant', label: 'Mon Profil', icon: 'M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z' },
+        { path: '/mes-evenements', label: 'Mes Événements', icon: 'M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z' },
       ];
     }
     return [{ path: '/dashboard', label: 'Dashboard', icon: 'M3 3h18v18H3zM9 9h6v6H9z' }];

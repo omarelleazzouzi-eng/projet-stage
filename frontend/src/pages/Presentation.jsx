@@ -1,5 +1,6 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 /* ── Font Awesome CDN injected once ── */
 if (!document.getElementById("fa-cdn")) {
@@ -232,6 +233,7 @@ const tickerItems = [
 export default function Presentation() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled]     = useState(false);
+  const { user } = useContext(AuthContext);
 
   /* Navbar shadow on scroll */
   useEffect(() => {
@@ -287,10 +289,19 @@ export default function Presentation() {
 
           {/* Connexion btn */}
           <div className="hidden lg:flex" style={{ alignItems: "center", gap: 12 }}>
-            <Link to="/login" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#4CAF50,#388e3c)", color: "#fff", fontWeight: 700, fontSize: "0.88rem", padding: "9px 22px", borderRadius: 10, textDecoration: "none", boxShadow: "0 4px 14px rgba(76,175,80,0.3)", transition: "all 0.2s" }}>
-              <i className="fa-solid fa-right-to-bracket" />
-              Connexion
-            </Link>
+            {user ? (
+              <Link to="/dashboard" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "#f0fdf4", color: "#2e7d32", fontWeight: 700, fontSize: "0.88rem", padding: "6px 14px", borderRadius: 20, textDecoration: "none", border: "1px solid #a5d6a7" }}>
+                <div style={{ width: 26, height: 26, background: "#4CAF50", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "0.75rem" }}>
+                  {user.name?.charAt(0).toUpperCase()}
+                </div>
+                <span>{user.name}</span>
+              </Link>
+            ) : (
+              <Link to="/login" style={{ display: "inline-flex", alignItems: "center", gap: 8, background: "linear-gradient(135deg,#4CAF50,#388e3c)", color: "#fff", fontWeight: 700, fontSize: "0.88rem", padding: "9px 22px", borderRadius: 10, textDecoration: "none", boxShadow: "0 4px 14px rgba(76,175,80,0.3)", transition: "all 0.2s" }}>
+                <i className="fa-solid fa-right-to-bracket" />
+                Connexion
+              </Link>
+            )}
           </div>
 
           {/* Mobile toggle */}
@@ -320,10 +331,20 @@ export default function Presentation() {
                   {item.name}
                 </a>
               ))}
-              <Link to="/login" onClick={() => setMobileOpen(false)}
-                style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 12, padding: "12px", borderRadius: 10, fontWeight: 700, background: "#4CAF50", color: "#fff", textDecoration: "none" }}>
-                <i className="fa-solid fa-right-to-bracket" /> Connexion
-              </Link>
+              {user ? (
+                <Link to="/dashboard" onClick={() => setMobileOpen(false)}
+                  style={{ display: "flex", alignItems: "center", gap: 12, marginTop: 12, padding: "12px", borderRadius: 10, fontWeight: 700, background: "#f0fdf4", color: "#2e7d32", textDecoration: "none", border: "1px solid #a5d6a7" }}>
+                  <div style={{ width: 28, height: 28, background: "#4CAF50", borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", color: "#fff", fontSize: "0.8rem" }}>
+                    {user.name?.charAt(0).toUpperCase()}
+                  </div>
+                  {user.name}
+                </Link>
+              ) : (
+                <Link to="/login" onClick={() => setMobileOpen(false)}
+                  style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 8, marginTop: 12, padding: "12px", borderRadius: 10, fontWeight: 700, background: "#4CAF50", color: "#fff", textDecoration: "none" }}>
+                  <i className="fa-solid fa-right-to-bracket" /> Connexion
+                </Link>
+              )}
             </div>
           </div>
         </div>

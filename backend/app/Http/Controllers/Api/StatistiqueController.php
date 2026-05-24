@@ -59,7 +59,7 @@ class StatistiqueController extends Controller
             return response()->json(['error' => 'Professeur non trouvé'], 404);
         }
         
-        $classes = $professeur->classes()->withCount('etudiants')->get();
+        $classes = $professeur->classes()->withCount('etudiants')->get()->unique('id')->values();
         
         $totalEtudiants = $classes->sum('etudiants_count');
         

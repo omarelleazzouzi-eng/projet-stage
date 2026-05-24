@@ -172,9 +172,9 @@ export default function CoursPublic() {
   const filtered = cours.filter(c => {
     const matchFiliere = !selectedFiliere || c.classe?.filiere_id == selectedFiliere;
     const matchSearch = !search ||
-      c.titre?.toLowerCase().includes(search.toLowerCase()) ||
-      c.matiere?.nom?.toLowerCase().includes(search.toLowerCase()) ||
-      c.professeur?.nom?.toLowerCase().includes(search.toLowerCase());
+      c.titre?.toLowerCase()?.includes(search.toLowerCase()) ||
+      c.matiere?.nom?.toLowerCase()?.includes(search.toLowerCase()) ||
+      c.professeur?.nom?.toLowerCase()?.includes(search.toLowerCase());
     return matchFiliere && matchSearch;
   });
 

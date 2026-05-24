@@ -38,16 +38,30 @@ class StatistiqueService
           ->where('est_justifiee', false)
           ->count();
 
+        // Calculate total possible presences for the month (seances * students)
+        $totalSeancesThisMonth = Seance::whereMonth('date', Carbon::now()->month)
+            ->whereYear('date', Carbon::now()->year)
+            ->count();
+        
+        $totalEtudiants = Etudiant::where('est_archive', false)->count();
+        $totalPossiblePresences = $totalSeancesThisMonth * $totalEtudiants;
+        
+        $absentsCount = Absence::whereHas('seance', function ($q) {
+            $q->whereMonth('date', Carbon::now()->month)
+                ->whereYear('date', Carbon::now()->year);
+        })->where('statut', 'absent')->count();
+        
+        $retardsCount = Absence::whereHas('seance', function ($q) {
+            $q->whereMonth('date', Carbon::now()->month)
+                ->whereYear('date', Carbon::now()->year);
+        })->where('statut', 'retard')->count();
+        
+        $presentsCount = max(0, $totalPossiblePresences - $absentsCount - $retardsCount);
+        
         $parStatut = [
-            'presents' => Absence::whereHas('seance', function ($q) {
-                $q->whereMonth('date', Carbon::now()->month);
-            })->where('statut', 'present')->count(),
-            'absents' => Absence::whereHas('seance', function ($q) {
-                $q->whereMonth('date', Carbon::now()->month);
-            })->where('statut', 'absent')->count(),
-            'retards' => Absence::whereHas('seance', function ($q) {
-                $q->whereMonth('date', Carbon::now()->month);
-            })->where('statut', 'retard')->count(),
+            'presents' => $presentsCount,
+            'absents' => $absentsCount,
+            'retards' => $retardsCount,
         ];
 
         $classes = Classe::where('est_active', true)

@@ -112,15 +112,21 @@ class ProfessorController extends Controller
             return response()->json(['error' => 'Professeur non trouvé'], 404);
         }
 
-        // Get classes with their subjects for this professor
-        $classes = \DB::table('classe_professeur_matiere')
-            ->where('professeur_id', $professeur->id)
-            ->join('classes', 'classe_professeur_matiere.classe_id', '=', 'classes.id')
-            ->join('filieres', 'classes.filiere_id', '=', 'filieres.id')
-            ->join('niveaux', 'classes.niveau_id', '=', 'niveaux.id')
-            ->select('classes.id', 'classes.nom', 'classes.code', 'filieres.nom as filiere_nom', 'niveaux.nom as niveau_nom')
-            ->groupBy('classes.id')
-            ->get();
+        // Get classes with their subjects for this professor using the relationship
+        $classes = $professeur->classes()->with([
+            'filiere',
+            'niveau',
+            'etudiants'
+        ])->get()->unique('id')->values()->map(function ($classe) {
+            return [
+                'id' => $classe->id,
+                'nom' => $classe->nom,
+                'code' => $classe->code,
+                'filiere' => $classe->filiere,
+                'niveau' => $classe->niveau,
+                'etudiants_count' => $classe->etudiants->count(),
+            ];
+        });
 
         return response()->json($classes);
     }

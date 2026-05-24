@@ -164,11 +164,11 @@ Route::get('/filieres', [FiliereController::class, 'index']);
     Route::get('/absences/historique/{etudiantId}', [AbsenceController::class, 'historique']);
 
     // Événements
+    Route::get('/events/mes-inscriptions', [EventController::class, 'myRegistrations']);
     Route::apiResource('events', EventController::class);
     Route::get('/events/{event}/participants', [EventController::class, 'show']);
     Route::post('/events/{event}/register', [EventController::class, 'register']);
     Route::delete('/events/{event}/unregister', [EventController::class, 'unregister']);
-    Route::get('/events/mes-inscriptions', [EventController::class, 'myRegistrations']);
 
     // Inscriptions événements
     Route::put('/event-registrations/{registration}', [EventController::class, 'updateRegistration']);
