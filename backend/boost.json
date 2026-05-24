@@ -1,0 +1,9 @@
+{
+    "agents": [
+        "opencode"
+    ],
+    "cloud": true,
+    "skills": [
+        "laravel-best-practices"
+    ]
+}

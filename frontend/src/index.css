@@ -1,0 +1,677 @@
+@import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap");
+
+/* ============================================================
+   BTS TAZA — Design System (style Nexcent)
+   Palette principale : Vert #4CAF50
+   Palette secondaire : Gris-bleu #263238
+   ============================================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #263238;
+  background: #f5f7fa;
+}
+
+/* ============================================================
+   TAILWIND THEME — Couleurs custom
+   Remplacement de primary-* et secondary-*
+   ============================================================ */
+
+@theme {
+  /* PRIMARY = Vert BTS */
+  --color-primary-50: #e8f5e9;
+  --color-primary-100: #c8e6c9;
+  --color-primary-200: #a5d6a7;
+  --color-primary-300: #81c784;
+  --color-primary-400: #66bb6a;
+  --color-primary-500: #4caf50;
+  --color-primary-600: #43a047;
+  --color-primary-700: #388e3c;
+  --color-primary-800: #2e7d32;
+  --color-primary-900: #1b5e20;
+
+  /* SECONDARY = Gris foncé pro */
+  --color-secondary-50: #f5f7fa;
+  --color-secondary-100: #eceff1;
+  --color-secondary-200: #cfd8dc;
+  --color-secondary-300: #b0bec5;
+  --color-secondary-400: #90a4ae;
+  --color-secondary-500: #78909c;
+  --color-secondary-600: #546e7a;
+  --color-secondary-700: #455a64;
+  --color-secondary-800: #37474f;
+  --color-secondary-900: #263238;
+
+  /* Typographie */
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Manrope", "Inter", sans-serif;
+
+  /* Border radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+
+  /* Shadows */
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-card-hover:
+    0 8px 25px rgba(76, 175, 80, 0.12), 0 4px 10px rgba(0, 0, 0, 0.06);
+  --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-green: 0 4px 14px rgba(76, 175, 80, 0.3);
+}
+
+/* ============================================================
+   UTILITAIRES CUSTOM — compatibles Tailwind
+   ============================================================ */
+
+/* Fonts */
+.font-display {
+  font-family: "Manrope", "Inter", sans-serif;
+}
+
+/* Shadows custom */
+.shadow-card {
+  box-shadow: var(--shadow-card);
+}
+.shadow-card-hover {
+  box-shadow: var(--shadow-card-hover);
+}
+.shadow-soft {
+  box-shadow: var(--shadow-soft);
+}
+.shadow-green {
+  box-shadow: var(--shadow-green);
+}
+
+/* Ring primary */
+.ring-primary-500 {
+  --tw-ring-color: #4caf50;
+}
+
+/* Borders primary */
+.border-primary-200 {
+  border-color: #a5d6a7;
+}
+.border-primary-500 {
+  border-color: #4caf50;
+}
+.border-secondary-100 {
+  border-color: #eceff1;
+}
+.border-secondary-200 {
+  border-color: #cfd8dc;
+}
+
+/* ============================================================
+   COMPOSANTS GLOBAUX
+   ============================================================ */
+
+/* --- Boutons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-radius: 10px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+  white-space: nowrap;
+}
+.btn-primary-solid {
+  background: #4caf50;
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(76, 175, 80, 0.25);
+}
+.btn-primary-solid:hover {
+  background: #388e3c;
+  box-shadow: 0 6px 18px rgba(76, 175, 80, 0.35);
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: #4caf50;
+  border: 2px solid #4caf50;
+}
+.btn-outline-primary:hover {
+  background: #4caf50;
+  color: #fff;
+}
+
+/* --- Cards --- */
+.card-base {
+  background: #ffffff;
+  border: 1px solid #eceff1;
+  border-radius: 14px;
+  box-shadow: var(--shadow-card);
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+}
+.card-base:hover {
+  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);
+}
+
+/* --- Badges --- */
+.badge-green {
+  display: inline-flex;
+  align-items: center;
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+.badge-red {
+  background: #ffebee;
+  color: #b71c1c;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+.badge-yellow {
+  background: #fff8e1;
+  color: #e65100;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+.badge-blue {
+  background: #e3f2fd;
+  color: #0d47a1;
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 999px;
+}
+
+/* --- Formulaires --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+input[type="time"],
+select,
+textarea {
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  color: #37474f;
+  background: #ffffff;
+  border: 1.5px solid #cfd8dc;
+  border-radius: 10px;
+  padding: 10px 14px;
+  width: 100%;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
+  outline: none;
+}
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #4caf50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.15);
+}
+input::placeholder {
+  color: #90a4ae;
+}
+
+label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #455a64;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* --- Tables --- */
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+thead th {
+  background: #f5f7fa;
+  color: #546e7a;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #eceff1;
+  text-align: left;
+}
+tbody tr {
+  border-bottom: 1px solid #eceff1;
+  transition: background 0.15s;
+}
+tbody tr:hover {
+  background: #f5f7fa;
+}
+tbody td {
+  padding: 13px 16px;
+  color: #455a64;
+  font-size: 0.9rem;
+}
+tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* --- Modals overlay --- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(38, 50, 56, 0.45);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+}
+.modal-box {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  padding: 28px 32px;
+  width: 100%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+/* --- Sidebar nav items --- */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #546e7a;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-decoration: none;
+}
+.sidebar-item:hover {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+.sidebar-item.active {
+  background: #4caf50;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.25);
+}
+.sidebar-item.active svg {
+  stroke: #ffffff;
+}
+
+/* --- Stat cards (dashboard) --- */
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #eceff1;
+  border-radius: 14px;
+  padding: 20px 24px;
+  box-shadow: var(--shadow-card);
+}
+.stat-card .stat-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.stat-card .stat-value {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #263238;
+  line-height: 1;
+}
+.stat-card .stat-label {
+  font-size: 0.82rem;
+  color: #78909c;
+  margin-top: 4px;
+}
+
+/* --- Notifications toast --- */
+.toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 100;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  animation: slideIn 0.3s ease;
+}
+.toast-success {
+  background: #4caf50;
+  color: #fff;
+}
+.toast-error {
+  background: #ef5350;
+  color: #fff;
+}
+@keyframes slideIn {
+  from {
+    transform: translateX(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* --- Loading spinner --- */
+.spinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid #e8f5e9;
+  border-top-color: #4caf50;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* --- Section headers --- */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.page-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #263238;
+}
+.page-subtitle {
+  font-size: 0.9rem;
+  color: #78909c;
+  margin-top: 4px;
+}
+
+/* --- Section label (eyebrow) --- */
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #4caf50;
+  margin-bottom: 6px;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #eceff1;
+}
+::-webkit-scrollbar-thumb {
+  background: #b0bec5;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #78909c;
+}
+
+/* ============================================================
+   UTILITAIRES TAILWIND MANQUANTS
+   Permet à vos classes existantes de fonctionner sans changer le JSX
+   ============================================================ */
+
+/* bg-primary-* */
+.bg-primary-50 {
+  background-color: #e8f5e9 !important;
+}
+.bg-primary-100 {
+  background-color: #c8e6c9 !important;
+}
+.bg-primary-200 {
+  background-color: #a5d6a7 !important;
+}
+.bg-primary-500 {
+  background-color: #4caf50 !important;
+}
+.bg-primary-600 {
+  background-color: #43a047 !important;
+}
+.bg-primary-700 {
+  background-color: #388e3c !important;
+}
+.bg-primary-800 {
+  background-color: #2e7d32 !important;
+}
+
+/* text-primary-* */
+.text-primary-50 {
+  color: #e8f5e9 !important;
+}
+.text-primary-100 {
+  color: #c8e6c9 !important;
+}
+.text-primary-500 {
+  color: #4caf50 !important;
+}
+.text-primary-600 {
+  color: #43a047 !important;
+}
+.text-primary-700 {
+  color: #388e3c !important;
+}
+
+/* hover:bg-primary-* */
+.hover\:bg-primary-50:hover {
+  background-color: #e8f5e9 !important;
+}
+.hover\:bg-primary-700:hover {
+  background-color: #388e3c !important;
+}
+
+/* hover:text-primary-* */
+.hover\:text-primary-600:hover {
+  color: #43a047 !important;
+}
+.hover\:text-primary-700:hover {
+  color: #388e3c !important;
+}
+
+/* bg-secondary-* */
+.bg-secondary-50 {
+  background-color: #f5f7fa !important;
+}
+.bg-secondary-100 {
+  background-color: #eceff1 !important;
+}
+.bg-secondary-200 {
+  background-color: #cfd8dc !important;
+}
+
+/* text-secondary-* */
+.text-secondary-400 {
+  color: #90a4ae !important;
+}
+.text-secondary-500 {
+  color: #78909c !important;
+}
+.text-secondary-600 {
+  color: #546e7a !important;
+}
+.text-secondary-700 {
+  color: #455a64 !important;
+}
+.text-secondary-800 {
+  color: #37474f !important;
+}
+.text-secondary-900 {
+  color: #263238 !important;
+}
+
+/* hover:bg-secondary-* */
+.hover\:bg-secondary-50:hover {
+  background-color: #f5f7fa !important;
+}
+.hover\:bg-secondary-100:hover {
+  background-color: #eceff1 !important;
+}
+
+/* hover:text-secondary-* */
+.hover\:text-secondary-700:hover {
+  color: #455a64 !important;
+}
+
+/* border-secondary-* */
+.border-secondary-50 {
+  border-color: #f5f7fa !important;
+}
+.border-secondary-100 {
+  border-color: #eceff1 !important;
+}
+.border-secondary-200 {
+  border-color: #cfd8dc !important;
+}
+
+/* focus:ring-primary */
+.focus\:ring-primary-500:focus {
+  --tw-ring-color: rgba(76, 175, 80, 0.4) !important;
+}
+.focus\:border-primary-500:focus {
+  border-color: #4caf50 !important;
+}
+
+/* shadow custom */
+.shadow-card {
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.06),
+    0 1px 2px rgba(0, 0, 0, 0.04) !important;
+}
+.shadow-card-hover {
+  box-shadow:
+    0 8px 25px rgba(76, 175, 80, 0.12),
+    0 4px 10px rgba(0, 0, 0, 0.06) !important;
+}
+.shadow-soft {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+/* ring-primary-500 */
+.ring-primary-500 {
+  --tw-ring-color: #4caf50 !important;
+}
+.ring-2.ring-primary-500 {
+  box-shadow: 0 0 0 2px #4caf50 !important;
+}
+
+/* Rounded xl override */
+.rounded-xl {
+  border-radius: 12px !important;
+}
+.rounded-2xl {
+  border-radius: 16px !important;
+}
+
+/* ============================================================
+   ACCUEIL PUBLIC — remplace le style bleu par vert
+   ============================================================ */
+
+/* Override gradient bleu → vert */
+.from-blue-900 {
+  --tw-gradient-from: #1b5e20 !important;
+}
+.via-blue-800 {
+  --tw-gradient-via: #2e7d32 !important;
+}
+.to-indigo-900 {
+  --tw-gradient-to: #1b5e20 !important;
+}
+
+.from-blue-600.to-indigo-600 {
+  background: linear-gradient(135deg, #43a047, #2e7d32) !important;
+}
+.from-purple-600.to-pink-600 {
+  background: linear-gradient(135deg, #00897b, #00695c) !important;
+}
+.from-green-600.to-teal-600 {
+  background: linear-gradient(135deg, #388e3c, #1b5e20) !important;
+}
+.from-orange-600.to-red-600 {
+  background: linear-gradient(135deg, #558b2f, #33691e) !important;
+}
+
+.text-blue-200 {
+  color: #a5d6a7 !important;
+}
+.text-blue-300 {
+  color: #81c784 !important;
+}
+.text-blue-800 {
+  color: #2e7d32 !important;
+}
+.bg-blue-800 {
+  background-color: #2e7d32 !important;
+}
+.bg-blue-50 {
+  background-color: #e8f5e9 !important;
+}
+.hover\:bg-blue-50:hover {
+  background-color: #e8f5e9 !important;
+}
+
+.text-primary-100 {
+  color: #c8e6c9 !important;
+}
+.bg-primary-500 {
+  background-color: #4caf50 !important;
+}
+.shadow-primary-200 {
+  box-shadow: 0 4px 14px rgba(76, 175, 80, 0.3) !important;
+}
